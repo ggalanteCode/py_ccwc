@@ -5,12 +5,12 @@ def count_number_of_bytes(path: str) -> int:
     return getsize(path)
 
 def count_number_of_lines(path: str) -> int:
-    with open(repr(path)[1:-1], 'r', encoding='utf-8') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         return len(file.readlines())
 
 def count_number_of_words(path: str) -> int:
     number_of_words = 0
-    with open(repr(path)[1:-1], 'r', encoding='utf-8') as file:
+    with open(path, 'r', encoding='utf-8') as file:
         data = file.read()
         lines = data.split()    # each word is placed in a separate line
         number_of_words += len(lines)
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     }
 
     input_option = argv[1]
-    file_path = argv[2]
+    file_path = repr(argv[2])[1:-1]
 
     for option, func in options.items():
         if input_option == option:
